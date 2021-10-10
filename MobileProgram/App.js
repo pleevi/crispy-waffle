@@ -5,15 +5,12 @@ import ShowCriteria from './screens/ShowCriteria'
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-
-const Drawer = createDrawerNavigator();
+import 'react-native-gesture-handler';
+import MyDrawerNavigator from './navigation/MyDrawerNavigation';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start WWWOOOOOORRRLLDDDD!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <MyDrawerNavigator />
   );
 }
 
