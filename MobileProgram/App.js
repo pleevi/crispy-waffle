@@ -6,11 +6,15 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import 'react-native-gesture-handler';
-import MyDrawerNavigator from './navigation/MyDrawerNavigation';
+
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
-    <MyDrawerNavigator />
+    <View style={styles.container}>
+      <Text>Open up App.js to start WWWOOOOOORRRLLDDDD!</Text>
+      <StatusBar style="auto" />
+    </View>
   );
 }
 
