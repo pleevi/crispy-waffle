@@ -1,41 +1,56 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
-import {StyleSheet,Text,View,Image,TextInput,Button,TouchableOpacity,} from "react-native";
+import * as React from 'react';
+import {SafeAreaView, StyleSheet, View, Text, Button, TextInput} from 'react-native';
  
-export default function LoginScreen() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
- 
+
+
+const LoginScreen = ({navigation}) => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={{flex: 1}}>
+      <View style={{flex: 1, padding: 16}}>
+        <View style={styles.container}>
+        <View style={styles.container}>
       
  
-      <StatusBar style="auto" />
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="User"
-          onChangeText={(email) => setEmail(email)}
-        />
-      </View>
+            <StatusBar style="auto" />
+                <View style={styles.inputView}>
+                    <TextInput
+                    style={styles.TextInput}
+                    placeholder="User"
+                    onChangeText={(email) => setEmail(email)}
+                    />
+                </View>
  
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Password"
-          secureTextEntry={true}
-          onChangeText={(password) => setPassword(password)}
-        />
-      </View>
- 
-      
- 
-      <TouchableOpacity style={styles.loginBtn}>
-        <Text style={styles.loginText}>LOGIN</Text>
-      </TouchableOpacity>
-    </View>
+                <View style={styles.inputView}>
+                    <TextInput
+                    style={styles.TextInput}
+                    placeholder="Password"
+                    secureTextEntry={true}
+                    onChangeText={(password) => setPassword(password)}
+                    />
+                </View>
+
+                <Button
+                    title="LOG IN"
+                    onPress={() => navigation.navigate('LoggedIn')}
+                />
+                <Text
+                    style={{
+                    marginTop: 30,
+                    fontSize: 16,
+                    textAlign: 'center'
+                    }}>
+                </Text>
+        </View>
+          
+          
+        </View>
+        </View>
+    </SafeAreaView>
   );
-}
+};
+
+
  
 const styles = StyleSheet.create({
   container: {
@@ -81,3 +96,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#FF1493",
   },
 });
+
+export default LoginScreen;
+ 
