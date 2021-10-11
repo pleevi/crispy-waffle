@@ -6,10 +6,10 @@ const FlatListItem = (props) => {
 
     return (
         <View style={styles.flatListItemStyle}>
-            <Text>{props.firstName} {"\n"}</Text>
-            <Text>Raaka-aineet: {"\n"}{"\n"}{props.lastName} {"\n"}</Text>
-            <Text>Laittoaika: {props.age}h {"\n"}</Text>
-            <Text>Ohje: {"\n"}{"\n"}{props.ohje} </Text>
+            <Text>{props.name} {"\n"}</Text>
+            <Text>Difficulty: {props.difficulty} {"\n"}</Text>
+            <Text>Cooking time: {props.cooking_time} {"\n"}</Text>
+            <Text>Instructions: {"\n"}{"\n"}{props.instructions} </Text>
         </View>
     );
 

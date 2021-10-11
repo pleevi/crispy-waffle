@@ -9,7 +9,7 @@ export default function showRecipes() {
     const [isLoading, setLoading] = useState(true);
 
     async function fetchPeople() {
-        await fetch("http://10.0.2.2:8080/rest/personservice/getAll")//Function returns a value, which is a parameter 
+        await fetch("http://10.0.2.2:8080/rest/mealsservice/getAll")//Function returns a value, which is a parameter 
             .then(parameter => parameter.json())//to the next part (parameter). And parameter.json() returns a value, which is a parameter 
             .then(anotherParameter => setPeople(anotherParameter));//to the next (anotherParameter), which is set to movies
 
@@ -46,9 +46,9 @@ export default function showRecipes() {
         return (
             <View style={styles.screen}>
                 <FlatList
-                    keyExtractor={item => item.id.toString()}
+                    keyExtractor={item => item.recipe_id.toString()}
                     data={people}
-                    renderItem={itemData => <FlatListItem id={itemData.item.id} firstName={itemData.item.firstName} lastName={itemData.item.lastName} age={itemData.item.age} ohje={itemData.item.ohje} />}
+                    renderItem={itemData => <FlatListItem name={itemData.item.name} difficulty={itemData.item.difficulty} cooking_time={itemData.item.cooking_time} instructions={itemData.item.instructions} />}
                 />
 
                 <Button title="Show recipes" onPress={fetchPeople} />
