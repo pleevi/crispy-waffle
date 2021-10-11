@@ -1,52 +1,43 @@
 import { StatusBar } from "expo-status-bar";
 import * as React from 'react';
-import {SafeAreaView, StyleSheet, View, Text, Button, TextInput} from 'react-native';
+import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
  
 
 
-const LoginScreen = ({navigation}) => {
+const LoginScreen = ({ onSignIn }) => {
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <View style={{flex: 1, padding: 16}}>
-        <View style={styles.container}>
-        <View style={styles.container}>
+    <View style={styles.container}>
+      <Text style={styles.h1}>FoodRoulette</Text>
+      <View style={styles.inputView}>
+        <TextInput
+          style={styles.TextInput}
+          placeholder="Email."
+          placeholderTextColor="#003f5c"
+          onChangeText={(email) => setEmail(email)}
+        />
+      </View>
+ 
+      <View style={styles.inputView}>
+        <TextInput
+          style={styles.TextInput}
+          placeholder="Password."
+          placeholderTextColor="#003f5c"
+          secureTextEntry={true}
+          onChangeText={(password) => setPassword(password)}
+        />
+      </View>
       
- 
-            <StatusBar style="auto" />
-                <View style={styles.inputView}>
-                    <TextInput
-                    style={styles.TextInput}
-                    placeholder="User"
-                    onChangeText={(email) => setEmail(email)}
-                    />
-                </View>
- 
-                <View style={styles.inputView}>
-                    <TextInput
-                    style={styles.TextInput}
-                    placeholder="Password"
-                    secureTextEntry={true}
-                    onChangeText={(password) => setPassword(password)}
-                    />
-                </View>
+      <View style={styles.buttonContainer}>
+        <Button
+          title="LOGIN"
+          style={styles.button}
+          onPress={onSignIn}
+          color="orange"
+        />
+        </View>
+      </View>
+      
 
-                <Button
-                    title="LOG IN"
-                    onPress={() => navigation.navigate('LoggedIn')}
-                />
-                <Text
-                    style={{
-                    marginTop: 30,
-                    fontSize: 16,
-                    textAlign: 'center'
-                    }}>
-                </Text>
-        </View>
-          
-          
-        </View>
-        </View>
-    </SafeAreaView>
   );
 };
 
@@ -55,17 +46,18 @@ const LoginScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
+    justifyContent: 'space-between',
+    backgroundColor: '#000',
+    alignItems: 'center',
+    width: '100%',
+},
  
   image: {
     marginBottom: 40,
   },
  
   inputView: {
-    backgroundColor: "#FFC0CB",
+    backgroundColor: "orange",
     borderRadius: 30,
     width: "70%",
     height: 45,
@@ -94,6 +86,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: 40,
     backgroundColor: "#FF1493",
+  },
+  h1: {
+    paddingTop: 50,
+    paddingBottom:200,
+    color: 'orange',
+    fontSize: 40,
   },
 });
 
