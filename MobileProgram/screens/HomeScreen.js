@@ -10,7 +10,7 @@ LogBox.ignoreLogs(['Animated: `useNativeDriver` was not specified.']);
 LogBox.ignoreLogs(["Warning: Can't perform a React state update on an unmounted component."]);
 
  
-const HomeScreen = ({ onSignIn }) => {
+const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.h3}>WELCOME USER!</Text>

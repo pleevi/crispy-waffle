@@ -2,43 +2,57 @@ import { StatusBar } from "expo-status-bar";
 import * as React from 'react';
 import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
 import { Formik } from 'formik'
+import * as yup from 'yup';
  
+const validate = yup.object().shape({
+  username: yup.string()
+  .matches("admin"),
+  password: yup.string()
+  .matches("admin"),
+})
 
 
-const LoginScreen = ({ onSignIn }) => {
+const LoginScreen = ({onSignIn}) => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
+  
   return (
     <View style={styles.container}>
       <Text style={styles.h1}>FoodRoulette</Text>
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Username"
-          value={username}
-          placeholderTextColor="#003f5c"
-          onChangeText={(text) => setUsername(text)}
-        />
-      </View>
- 
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Password"
-          value={password}
-          placeholderTextColor="#003f5c"
-          secureTextEntry={true}
-          onChangeText={(text) => setPassword(text)}
-        />
-      </View>
-      
-      <View style={styles.buttonContainer}>
-        <Button
-          title="LOGIN"
-          style={styles.button}
-          onPress={onSignIn}
-          color="orange"
-        />
+      <View style={styles.loginContainer}>
+          <Formik
+            validationSchema={validate}
+            initialValues={{ username: '', password: '' }}
+            onSubmit={(values) => {
+              onSignIn(values);
+              console.log(values);
+            }}
+          >
+            {(props) => (
+              <View style={styles.loginContainer}>
+              <TextInput
+                  name="username"
+                  placeholder="Username"
+                  style={styles.textInput}
+                  onChangeText={props.handleChange('username')}
+                  value={props.values.username}
+                  keyboardType="email-address"
+                />
+                <Text style={styles.hError}>{props.touched.username && props.errors.username}</Text>
+                
+                <TextInput
+                  name="password"
+                  placeholder="Password"
+                  style={styles.textInput}
+                  onChangeText={props.handleChange('password')}
+                  value={props.values.password}
+                  secureTextEntry
+                />
+                
+                <Button onPress={props.handleSubmit} title="Login" color="orange"/>
+              </View>
+            )}
+          </Formik>
         </View>
       </View>
       
@@ -57,6 +71,25 @@ const styles = StyleSheet.create({
     width: '100%',
 },
  
+loginContainer: {
+  width: '80%',
+  alignItems: 'center',
+  backgroundColor: 'white',
+  padding: 10,
+  elevation: 10,
+  backgroundColor: 'black'
+},
+textInput: {
+  textAlign: "center",
+  marginBottom: 10,
+  height: 50,
+  width: '100%',
+  margin: 10,
+  backgroundColor: 'white',
+  borderColor: 'gray',
+  borderWidth: StyleSheet.hairlineWidth,
+  borderRadius: 10,
+},
   image: {
     marginBottom: 40,
   },
@@ -97,6 +130,12 @@ const styles = StyleSheet.create({
     paddingBottom:200,
     color: 'orange',
     fontSize: 40,
+  },
+  hError: {
+    paddingTop: 10,
+    paddingBottom:10,
+    color: 'orange',
+    fontSize: 20,
   },
 });
 
