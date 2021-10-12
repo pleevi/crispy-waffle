@@ -1,9 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, CheckBox, Text, View, Button, TextInput, Alert, Modal, FlatList } from 'react-native';
+import { StyleSheet, CheckBox, Text, View, Button, TextInput, Alert, Modal, TouchableOpacity, FlatList } from 'react-native';
 import { init, fetchAllCriteria } from '../db2';
 import * as SQLite from 'expo-sqlite';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+//import { TouchableOpacity } from 'react-native-gesture-handler';
 import Constants from 'expo-constants';
+//riku
+import { StatusBar } from 'expo-status-bar';
+import { NavigationContainer } from '@react-navigation/native'
 
 
 const data = [
@@ -34,6 +37,11 @@ export default function showCriteria() {
   const [isSelected, setSelection] = useState(false);
   //const [isLoading, setLoading] = useState(true);
   const [products, setProducts] = useState(data);
+  //riku
+  const [message, setMessage]=useState("Compare Criterias");
+  //const { navigate } = useNavigation();
+  //const { currentUser, posts } = props;
+
 
 
   const handleChange = (id) => {
@@ -69,7 +77,6 @@ export default function showCriteria() {
         console.log("All fish has been read - really?");
       }
   }
-
     return (
       <View style={styles.container}>
         <View style={styles.flatliststyle}>
@@ -95,6 +102,9 @@ export default function showCriteria() {
           )}
         />
         </View>
+        <Text>{message}</Text>
+        <Button title='Compare' />
+        <StatusBar style="auto" />
             
       </View>
     );
