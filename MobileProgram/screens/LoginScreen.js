@@ -1,29 +1,34 @@
 import { StatusBar } from "expo-status-bar";
 import * as React from 'react';
 import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
+import { Formik } from 'formik'
  
 
 
 const LoginScreen = ({ onSignIn }) => {
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
   return (
     <View style={styles.container}>
       <Text style={styles.h1}>FoodRoulette</Text>
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
-          placeholder="Email."
+          placeholder="Username"
+          value={username}
           placeholderTextColor="#003f5c"
-          onChangeText={(email) => setEmail(email)}
+          onChangeText={(text) => setUsername(text)}
         />
       </View>
  
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
-          placeholder="Password."
+          placeholder="Password"
+          value={password}
           placeholderTextColor="#003f5c"
           secureTextEntry={true}
-          onChangeText={(password) => setPassword(password)}
+          onChangeText={(text) => setPassword(text)}
         />
       </View>
       
@@ -42,7 +47,7 @@ const LoginScreen = ({ onSignIn }) => {
 };
 
 
- 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

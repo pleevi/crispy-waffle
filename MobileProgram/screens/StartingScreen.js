@@ -1,16 +1,29 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet, Image, Pressable } from 'react-native';
+import SpinningImage from 'react-native-spinning-image';
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs(['Animated: `useNativeDriver` was not specified.']);
   
 const StartingScreen = ({ navigation }) => {
     return (
       <View style={styles.container}>
         <Text style={styles.h1}>FoodRoulette</Text>
         <View style={styles.imageContainer}>
-            <Image fadeDuration={3000}
-            source={{uri:'https://www.onlineroulette.org/images/cms/icons/icon-roulette.png'}}
-            style={styles.image} resizeMode='cover'/>
+        <SpinningImage
+          source={'https://www.onlineroulette.org/images/cms/icons/icon-roulette.png'}
+          style={styles.image}
+          fadeDuration={3000}
+          speed={3000}
+          rotations={10}
+          resizeMode='cover'
+          height={200}
+          width={200}
+          direction='counter'
+          />
+            
         </View> 
-        <Text style={styles.h2}>Do you want to play a game</Text> 
+        <Text style={styles.h2}>Do you want to play a game?</Text> 
         <View style={styles.buttonContainer}>
         <Button
           title="LET'S START"
