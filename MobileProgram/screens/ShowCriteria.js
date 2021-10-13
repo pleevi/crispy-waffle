@@ -57,6 +57,25 @@ export default function showCriteria() {
 
 
   });
+  async function saveCheckedCriteria() {
+    try {
+      const dbResult = await fetchAllCriteria(newCriteria);
+      console.log("dbResult");
+      console.log(dbResult);
+      for (i = 0; i < dbResult.rows._array.length; i++) {
+        dbResult.rows._array[i].isChecked = false;
+
+      }
+      setCriteriaList(dbResult.rows._array);
+    }
+    catch (err) {
+      console.log(err);
+    }
+    finally {
+      console.log("All fish has been read - really?");
+    }
+  }
+  
 
   async function readCriteria() {
     try {
@@ -98,12 +117,17 @@ export default function showCriteria() {
                 <Text style={styles.label}>{item.id}. {item.checkbox}</Text>
               </View>
             </View>
+            
 
           )}
         />
       </View>
-
+      <View>
+        <Text>Save Criterias</Text>
+        <Button title="Press" onPress={saveCheckedCriteria}/>
+      </View>
     </View>
+    
   );
 
 };
