@@ -73,7 +73,7 @@ export default function showCriteria() {
       console.log(err);
     }
     finally {
-      console.log("All fish has been read - really?");
+      console.log("");
     }
   }
 
