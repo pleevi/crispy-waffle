@@ -13,9 +13,9 @@ export default function App() {
   return (
     <NavigationContainer>
       <Drawer.Navigator>
+        <Drawer.Screen name="Show recipes" component={showRecipes} />
         <Drawer.Screen name="Show Criteria" component={ShowCriteria} />
         <Drawer.Screen name="Input Criteria" component={InputCriteria} />
-        <Drawer.Screen name="Show recipes" component={showRecipes} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

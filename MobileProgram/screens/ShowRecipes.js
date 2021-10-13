@@ -1,18 +1,54 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, ScrollView, FlatList, Alert, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Modal, ScrollView, FlatList, Alert, ActivityIndicator } from 'react-native';
 import FlatListItem from '../components/FlatListItem';
+import IngredientListItem from '../components/IngredientListItem';
 
 export default function showRecipes() {
     const [hasError, setErrors] = useState(false);
     const [someError, setSomeErrors] = useState('');
-    const [people, setPeople] = useState([]);
+    const [recipe, setRecipe] = useState([]);
+    const [ingredient, setIngredient] = useState([]);
     const [isLoading, setLoading] = useState(true);
+    const [isVisible, setVisibility] = useState(false);
+    const [id, setId] = useState(1);
 
-    async function fetchPeople() {
+
+    async function fetchRecipe() {
         await fetch("http://10.0.2.2:8080/rest/mealsservice/getAll")//Function returns a value, which is a parameter 
             .then(parameter => parameter.json())//to the next part (parameter). And parameter.json() returns a value, which is a parameter 
-            .then(anotherParameter => setPeople(anotherParameter));//to the next (anotherParameter), which is set to movies
+            .then(anotherParameter => setRecipe(anotherParameter));//to the next (anotherParameter), which is set to movies
 
+    }
+
+    async function fetchIngredient() {
+        await fetch("http://10.0.2.2:8080/rest/mealsservice/getAllIngredients")//Function returns a value, which is a parameter 
+            .then(parameter => parameter.json())//to the next part (parameter). And parameter.json() returns a value, which is a parameter 
+            .then(anotherParameter => setIngredient(anotherParameter));//to the next (anotherParameter), which is set to movies
+
+    }
+
+    // async function sendData() {
+
+    //     const response = await fetch("http://10.0.2.2:8080/rest/mealsservice/getAll",
+    //         {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body: JSON.stringify({ id: 1 })
+    //         });
+
+    // }
+
+    const fetchHandler = () => {
+        // sendData();
+        fetchRecipe();
+        fetchIngredient();
+
+    }
+
+    const backToRecipe = () => {
+        setVisibility(false);
     }
 
     useEffect(() => {
@@ -47,11 +83,19 @@ export default function showRecipes() {
             <View style={styles.screen}>
                 <FlatList
                     keyExtractor={item => item.recipe_id.toString()}
-                    data={people}
-                    renderItem={itemData => <FlatListItem name={itemData.item.name} difficulty={itemData.item.difficulty} cooking_time={itemData.item.cooking_time} instructions={itemData.item.instructions} />}
+                    data={recipe}
+                    renderItem={itemData => <FlatListItem onShowIngredients={() => { setVisibility(true) }} name={itemData.item.name} difficulty={itemData.item.difficulty} cooking_time={itemData.item.cooking_time} instructions={itemData.item.instructions} />}
                 />
+                <Modal visible={isVisible} animationType="slide">
+                    <FlatList
+                        keyExtractor={item => item.ingredient_id.toString()}
+                        data={ingredient}
+                        renderItem={itemData => <IngredientListItem visibility={isVisible} onBackToRecipe={backToRecipe} ingredient={itemData.item.ingredient} amount={itemData.item.amount} unit={itemData.item.unit} />}
+                    />
+                    <Button title="Show Recipe" onPress={() => { setVisibility(false) }} />
+                </Modal>
 
-                <Button title="Show recipes" onPress={fetchPeople} />
+                <Button title="Show recipes" onPress={fetchHandler} />
             </View>
 
         );
@@ -75,5 +119,13 @@ const styles = StyleSheet.create({
         borderColor: 'red',
         padding: 10,
         width: '80%',
+    },
+
+    listItemStyle: {
+        borderWidth: 1,
+        borderColor: 'blue',
+        padding: 5,
+        backgroundColor: "#abc",
+        marginVertical: 5,
     },
 });

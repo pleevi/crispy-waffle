@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
 
 const FlatListItem = (props) => {
 
@@ -10,6 +10,7 @@ const FlatListItem = (props) => {
             <Text>Difficulty: {props.difficulty} {"\n"}</Text>
             <Text>Cooking time: {props.cooking_time} {"\n"}</Text>
             <Text>Instructions: {"\n"}{"\n"}{props.instructions} </Text>
+            <Button title="Show Ingredients" onPress={() => props.onShowIngredients()} />
         </View>
     );
 
