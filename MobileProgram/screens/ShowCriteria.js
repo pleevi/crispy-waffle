@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, CheckBox, Text, View, Button, TextInput, Alert, Modal, FlatList } from 'react-native';
-import { init, fetchAllCriteria } from '../db2';
+import { init, fetchAllCriteria, CheckboxCriteria } from '../db2';
 import * as SQLite from 'expo-sqlite';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Constants from 'expo-constants';
@@ -57,24 +57,25 @@ export default function showCriteria() {
 
 
   });
-  async function saveCheckedCriteria() {
-    try {
-      const dbResult = await fetchAllCriteria(newCriteria);
-      console.log("dbResult");
-      console.log(dbResult);
-      for (i = 0; i < dbResult.rows._array.length; i++) {
-        dbResult.rows._array[i].isChecked = false;
+  const addCheckboxHandler=()=>{
+    setCriteriaList(criteriaList=>[...criteriaList, {criteria:newCriteria}]);
+    saveCriteria();
+    
+    
+  }
 
-      }
-      setCriteriaList(dbResult.rows._array);
+  async function saveCheckedCriteria() {
+    try{
+      const dbResult = await CheckboxCriteria(newCriteria);
+      console.log(dbResult);
     }
-    catch (err) {
+    catch(err){
       console.log(err);
     }
-    finally {
-      console.log("All fish has been read - really?");
+    finally{
+      setIsInserted(true);
     }
-  }
+}
   
 
   async function readCriteria() {
