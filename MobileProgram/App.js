@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
+
 import * as SQLite from 'expo-sqlite';
 
 
@@ -14,6 +15,7 @@ import LoginScreen from './screens/LoginScreen';
 import InputCriteria from './screens/InputCriteria';
 import ShowCriteria from './screens/ShowCriteria';
 
+
  
 const Drawer = createDrawerNavigator();
  
@@ -23,7 +25,9 @@ const HomeScreenDrawer = () => {
       <Drawer.Screen name="Home Screen" component={HomeScreen} />
       <Drawer.Screen name="Input Criteria" component={InputCriteria} />
       <Drawer.Screen name="Show Criteria" component={ShowCriteria} />
+      <Drawer.Screen name="Show recipes" component={showRecipes} />
     </Drawer.Navigator>
+
   );
 };
 
