@@ -5,12 +5,12 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 const FlatListItem = (props) => {
 
     return (
-        <View style={styles.flatListItemStyle}>
+        <View style={styles.loginContainer}>
             <Text>{props.name} {"\n"}</Text>
             <Text>Difficulty: {props.difficulty} {"\n"}</Text>
             <Text>Cooking time: {props.cooking_time} {"\n"}</Text>
             <Text>Instructions: {"\n"}{"\n"}{props.instructions} </Text>
-            <Button title="Show Ingredients" onPress={() => props.onShowIngredients()} />
+            <Button title="Show Ingredients" onPress={() => props.onShowIngredients()} color="orange"/>
         </View>
     );
 
@@ -24,6 +24,23 @@ const styles = StyleSheet.create({
         backgroundColor: "#abc",
         marginVertical: 5,
     },
+    container: {
+        flex: 1,
+        justifyContent: 'space-between',
+        backgroundColor: '#000',
+        alignItems: 'center',
+        width: '100%',
+    },
+    loginContainer: {
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'white',
+        padding: 10,
+        elevation: 10,
+        backgroundColor: 'white',
+        borderRadius: 20,
+        justifyContent: 'space-between',
+      },
 });
 
 export default FlatListItem;

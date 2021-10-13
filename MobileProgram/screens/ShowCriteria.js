@@ -88,8 +88,10 @@ export default function showCriteria() {
 
             <View style={styles.listItemStyle}>
               <View style={styles.checkboxContainer}>
+
                 <CheckBox
                   value={item.isChecked}
+                  tintColors={{ true: 'orange', false: 'black' }}
                   onChange={() => {
                     handleChange(item.id);
                   }}
@@ -111,60 +113,68 @@ export default function showCriteria() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    justifyContent: 'space-between',
+    backgroundColor: '#000',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 30,
-  },
-  checkboxContainer: {
-    flexDirection: "row",
-    marginBottom: 20,
-  },
-  checkbox: {
-    alignSelf: "center",
-  },
-  label: {
-    margin: 8,
-  },
-  inputcontainer: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
-  buttoncontainer: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row',
-
-  },
-  inputStyle: {
-    width: 200,
-    height: 50,
-    padding: 10,
-    borderWidth: 2,
-    borderColor: '#f00',
-  },
-  listItemStyle: {
-    padding: 1,
-    backgroundColor: "white",
-    marginVertical: 1,
-  },
-  listItemStyle2: {
-    borderColor: 'white',
-    padding: 1,
-    backgroundColor: "white",
-    marginVertical: 2,
-  },
-  flatliststyle: {
-    borderColor: 'black',
-    borderWidth: 1,
-    height: '80%',
     width: '100%',
-    flex: 2,
-  },
-});
+},
+    checkboxContainer: {
+      flexDirection: "row",
+      marginBottom: 20,
+    },
+    checkbox: {
+      alignSelf: "center",
+    },
+    label: {
+      margin: 8,
+      color: "black",
+    },
+    inputcontainer: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexDirection:'row',
+    },
+    buttoncontainer: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexDirection:'row',
+      
+    },
+    inputStyle:{
+      width:200,
+      height:50,
+      padding:10,
+      borderWidth:2,
+      borderColor:'#f00',
+    },
+    listItemStyle: { 
+      textAlign: "center",
+      marginBottom: 10,
+      height: 40,
+      width: '90%',
+      margin: 10,
+      backgroundColor: 'white',
+      borderColor: 'gray',
+      borderWidth: StyleSheet.hairlineWidth,
+      borderRadius: 10,
+    },
+    listItemStyle2: {
+      borderColor: 'white', 
+      padding: 1,
+      backgroundColor:"white",
+      marginVertical:2,
+    },
+    flatliststyle: {
+      borderColor:'black',
+      borderWidth:1,
+      height:'80%',
+      width:'100%',
+      flex:2,
+    },
+  });
+  
 
