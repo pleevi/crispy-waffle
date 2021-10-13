@@ -41,6 +41,8 @@ export default function showCriteria() {
   const [message, setMessage]=useState("Compare Criterias");
   //const { navigate } = useNavigation();
   //const { currentUser, posts } = props;
+
+  
   const saveCheckedBox = (id) => {
     let temp = criteriaList.map((product) => {
       if (id === product.id) {
@@ -54,25 +56,15 @@ export default function showCriteria() {
   async function saveCheckedCriteria(){
 
     try{
-
-      const dbResult = await addCheckedCriteria(newCheckedCriteria);
-
+      const dbResult = await newCriteria(newCheckedCriteria);
       console.log(dbResult);
-
     }
-
     catch(err){
-
       console.log(err);
-
     }
-
     finally{
-
       setIsInserted(true);
-
     }
-
 }
 
 
@@ -136,9 +128,7 @@ export default function showCriteria() {
         />
         </View>
         <Text>{message}</Text>
-        <Button title='Compare' onPress={()=>{
-                props.navigation.navigate("Compare")
-            }}/>
+        <Button title='Compare' onPress={saveCheckedCriteria}/>
         <StatusBar style="auto" />
             
       </View>
