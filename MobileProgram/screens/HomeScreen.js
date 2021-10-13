@@ -32,7 +32,7 @@ const HomeScreen = ({ navigation }) => {
         <Button
           title="SPIN THE WHEEL"
           style={styles.button}
-          onPress={() => navigation.navigate('Show Criteria')}
+          onPress={() => navigation.navigate('Show recipes')}
           color="orange"
         />
            

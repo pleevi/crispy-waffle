@@ -14,6 +14,7 @@ import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
 import InputCriteria from './screens/InputCriteria';
 import ShowCriteria from './screens/ShowCriteria';
+import showRecipes from './screens/ShowRecipes';
 
 
  

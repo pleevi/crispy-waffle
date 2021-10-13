@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, setState } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Modal, ScrollView, FlatList, Alert, ActivityIndicator } from 'react-native';
 import FlatListItem from '../components/FlatListItem';
 import IngredientListItem from '../components/IngredientListItem';
+import SpinningImage from 'react-native-spinning-image';
 
 export default function showRecipes() {
     const [hasError, setErrors] = useState(false);
@@ -11,6 +12,10 @@ export default function showRecipes() {
     const [isLoading, setLoading] = useState(true);
     const [isVisible, setVisibility] = useState(false);
     const [id, setId] = useState(1);
+    const [isShowingImage, setShowingImage] = React.useState(false);
+    const [count, setCount] = useState(0);
+    const [shouldShow, setShouldShow] = useState(true);
+    const [isShowingBtn, setShowingBtn] = React.useState(true);
 
 
     async function fetchRecipe() {
@@ -40,9 +45,28 @@ export default function showRecipes() {
 
     // }
 
+    const imgShow = () => {
+        setShowingImage(true);
+    }
+
+    const imgHide = () => {
+        setShowingImage(false);
+    }
+    const btnHide = () => {
+        setShowingBtn(false);
+    }
+
     const fetchHandler = () => {
-        // sendData();
-        fetchRecipe();
+        imgShow({count});
+        setTimeout(() => {
+            fetchRecipe();
+            }, 3000);
+            setTimeout(() => {
+                imgHide();
+                }, 3000);
+                setTimeout(() => {
+                    btnHide();
+                    }, 3000);
         fetchIngredient();
 
     }
@@ -54,10 +78,21 @@ export default function showRecipes() {
     useEffect(() => {
         if (isLoading == true) {
             setLoading(false);
-
-
         }
+        const countTimer = setInterval(() => {
+            setCount((prevCount) => prevCount + 1);
+          // every 1000 milliseconds
+          }, 1000);
+          // and clear this timer when the component is unmounted
+          return function cleanup() {
+            clearInterval(countTimer);
+          };
+
     });
+
+
+
+    
 
     if (isLoading == true) {
         return (
@@ -80,22 +115,53 @@ export default function showRecipes() {
     //Otherwise the list is shown
     else {
         return (
-            <View style={styles.screen}>
-                <FlatList
+            <View style={styles.container}>
+                <FlatList style={styles.loginContainer}
                     keyExtractor={item => item.recipe_id.toString()}
                     data={recipe}
-                    renderItem={itemData => <FlatListItem onShowIngredients={() => { setVisibility(true) }} name={itemData.item.name} difficulty={itemData.item.difficulty} cooking_time={itemData.item.cooking_time} instructions={itemData.item.instructions} />}
+                    renderItem={itemData => <FlatListItem style={styles.loginContainer} onShowIngredients={() => { setVisibility(true) }} name={itemData.item.name} difficulty={itemData.item.difficulty} cooking_time={itemData.item.cooking_time} instructions={itemData.item.instructions} />}
                 />
                 <Modal visible={isVisible} animationType="slide">
-                    <FlatList
+                <Text style={styles.h1}>Incredients</Text>
+                    <FlatList style={styles.loginContainer2}
+                    
                         keyExtractor={item => item.ingredient_id.toString()}
                         data={ingredient}
                         renderItem={itemData => <IngredientListItem visibility={isVisible} onBackToRecipe={backToRecipe} ingredient={itemData.item.ingredient} amount={itemData.item.amount} unit={itemData.item.unit} />}
                     />
-                    <Button title="Show Recipe" onPress={() => { setVisibility(false) }} />
+                    <Button title="Show Recipe" onPress={() => { setVisibility(false) }} color="orange" />
                 </Modal>
 
-                <Button title="Show recipes" onPress={fetchHandler} />
+
+                <View style={styles.imageContainer}>
+                <Text>Rouletteiing your food {count}</Text>
+                    {
+                        isShowingImage ?
+                        (
+                            <SpinningImage
+                                source={'https://www.onlineroulette.org/images/cms/icons/icon-roulette.png'}
+                                style={styles.image}
+                                fadeDuration={3000}
+                                speed={3000}
+                                rotations={10}
+                                resizeMode='cover'
+                                height={200}
+                                width={200}
+                                direction='counter'
+                        
+                            />
+                        ) : (
+            
+                                
+                <Button
+                    title="SPIN THE WHEEL"
+                    style={styles.button}
+                    onPress={fetchHandler}
+                    color="orange"
+                />)
+                        }  
+            </View>
+                
             </View>
 
         );
@@ -105,6 +171,27 @@ export default function showRecipes() {
 
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'space-between',
+        backgroundColor: '#000',
+        alignItems: 'center',
+        width: '100%',
+    },
+    loginContainer: {
+        width: '80%',
+        backgroundColor: 'white',
+        padding: 10,
+        elevation: 10,
+        backgroundColor: 'black'
+      },
+      loginContainer2: {
+        width: '100%',
+        backgroundColor: 'white',
+        padding: 10,
+        elevation: 10,
+        backgroundColor: 'black'
+      },
     screen: {
         padding: 60,
     },
@@ -128,4 +215,12 @@ const styles = StyleSheet.create({
         backgroundColor: "#abc",
         marginVertical: 5,
     },
+    h1: {
+        paddingTop: 30,
+        paddingBottom:20,
+        color: 'orange',
+        fontSize: 40,
+        textAlign: 'center',
+        backgroundColor: "black",
+      },
 });
