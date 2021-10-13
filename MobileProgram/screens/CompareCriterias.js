@@ -5,6 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import * as SQLite from 'expo-sqlite';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Constants from 'expo-constants';
+import { useFocusEffect } from '@react-navigation/native'
 
 const data = [
   { id: 1, isChecked: false },
@@ -23,24 +24,7 @@ init()
   console.log('Database IS NOT initialized! '+err);
 });
 
-async function readCriteria() {
-  try {
-    const dbResult = await fetchCheckboxCriteria(newCriteria);
-    console.log("dbResult");
-    console.log(dbResult);
-    for (i = 0; i < dbResult.rows._array.length; i++) {
-      dbResult.rows._array[i].isChecked = false;
 
-    }
-    setCriteriaList(dbResult.rows._array);
-  }
-  catch (err) {
-    console.log(err);
-  }
-  finally {
-    console.log("All fish has been read - really?");
-  }
-}
 
 export default function CompareCriterias({ props, navigate, route }) {
 
@@ -52,24 +36,76 @@ export default function CompareCriterias({ props, navigate, route }) {
   //const [isLoading, setLoading] = useState(true);
   const [products, setProducts] = useState(data);
   
+  async function readCriteria() {
+    try {
+      const dbResult = await fetchCheckboxCriteria(newCriteria);
+      console.log("dbResult");
+      console.log(dbResult);
+      for (i = 0; i < dbResult.rows._array.length; i++) {
+        dbResult.rows._array[i].isChecked = false;
+  
+      }
+      setCriteriaList(dbResult.rows._array);
+    }
+    catch (err) {
+      console.log(err);
+    }
+    finally {
+      console.log("All fish has been read - really?");
+    }
+  }
+  const handleChange = (id) => {
+    let temp = criteriaList.map((product) => {
+      if (id === product.id) {
+        return { ...product, isChecked: !product.isChecked };
+      }
+      return product;
+    });
+    setCriteriaList(temp);
+  };
+
+  useFocusEffect(() => {
+    if (extraData.load == true) {
+      readCriteria();
+      extraData.load = false;
+
+    }
+
+
+  });
+
     return (
       <View style={styles.container}>
-        <View style={styles.flatliststyle}>
-          <FlatList
-            // keyExtractor={item=>item.id.toString()}
-            keyExtractor={item => criteriaList.indexOf(item).toString()}
-            data={criteriaList}
+      <View style={styles.flatliststyle}>
+        <FlatList
+          // keyExtractor={item=>item.id.toString()}
+          keyExtractor={item => criteriaList.indexOf(item).toString()}
+          data={criteriaList}
+          renderItem={({ item }) => (
 
-              
-          />
-        </View>
-        <Text>hahaa</Text>
+            <View style={styles.listItemStyle}>
+              <View style={styles.Container}>
+                <View
+                  value={item.isChecked}
+                  onChange={() => {
+                    handleChange(item.id);
+                  }}
+                  style={styles.Text}
+                />
+                <Text style={styles.label}>{item.id}. {item.Text}</Text>
+              </View>
+            </View>
+            
 
+          )}
+        />
       </View>
-      
-    );
-  
-  };
+
+    </View>
+    
+  );
+
+};
   
   const styles = StyleSheet.create({
     container: {

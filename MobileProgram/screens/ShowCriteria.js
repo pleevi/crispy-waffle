@@ -68,6 +68,11 @@ export default function showCriteria() {
     try{
       const dbResult = await CheckboxCriteria(newCriteria);
       console.log(dbResult);
+      for (i = 0; i < dbResult.rows._array.length; i++) {
+        dbResult.rows._array[i].isChecked = true;
+
+      }
+  
     }
     catch(err){
       console.log(err);

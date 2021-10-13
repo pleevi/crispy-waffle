@@ -88,7 +88,6 @@ export const fetchAllCriteria=()=>{
 export const fetchCheckboxCriteria=()=>{
     const promise=new Promise((resolve, reject)=>{
         db.transaction((tx)=>{
-            //Here we select all from the table fish
             tx.executeSql('select * from testi8;',  
             [],
             (tx, result)=>{
