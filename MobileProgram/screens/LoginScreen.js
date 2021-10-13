@@ -4,11 +4,14 @@ import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
 import { Formik } from 'formik'
 import * as yup from 'yup';
  
+
 const validate = yup.object().shape({
   username: yup.string()
-  .matches("admin"),
+  //.required()
+  .matches("admin", "Username not found"),
   password: yup.string()
-  .matches("admin"),
+  //.required()
+  .matches("admin", "Password incorrect"),
 })
 
 
@@ -48,7 +51,8 @@ const LoginScreen = ({onSignIn}) => {
                   value={props.values.password}
                   secureTextEntry
                 />
-                
+                <Text style={styles.hError}>{props.touched.password && props.errors.password}</Text>
+
                 <Button onPress={props.handleSubmit} title="Login" color="orange"/>
               </View>
             )}

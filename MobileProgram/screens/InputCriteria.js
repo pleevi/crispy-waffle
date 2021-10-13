@@ -58,7 +58,7 @@ export default function inputFish() {
   <View style={styles.container}>
     <View style={styles.inputcontainer}>
       <TextInput placeholder="Criteria" 
-                style={styles.inputStyle} 
+                style={styles.textInput} 
                 onChangeText={criteriaInputHandler}
                 value={newCriteria}/>  
             
@@ -66,7 +66,7 @@ export default function inputFish() {
   
 
     <View style={styles.buttoncontainer}>
-      <Button title="Add" onPress={addCriteriaHandler}/>
+      <Button title="Add" onPress={addCriteriaHandler} color="orange"/>
     </View>
     <View style={styles.flatliststyle}>
       <FlatList 
@@ -87,41 +87,47 @@ export default function inputFish() {
   
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginTop:30,
-    },
+  container: {
+    flex: 1,
+    justifyContent: 'space-between',
+    backgroundColor: '#000',
+    alignItems: 'center',
+    width: '100%',
+},
+
     inputcontainer: {
-      flex: 1,
-      backgroundColor: '#fff',
+      flex: 2,
+      backgroundColor: 'black',
       alignItems: 'center',
       justifyContent: 'center',
       flexDirection:'row',
     },
     buttoncontainer: {
-      flex: 1,
+      
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
       flexDirection:'row',
       
     },
-    inputStyle:{
-      width:200,
-      height:50,
-      padding:10,
-      borderWidth:2,
-      borderColor:'#f00',
+    textInput: {
+      textAlign: "center",
+      marginBottom: 10,
+      height: 50,
+      width: '80%',
+      margin: 10,
+      backgroundColor: 'white',
+      borderColor: 'gray',
+      borderWidth: StyleSheet.hairlineWidth,
+      borderRadius: 10,
     },
     listItemStyle: {
       borderWidth: 1, 
-      borderColor: 'blue', 
+      borderColor: 'orange', 
       padding: 5,
       backgroundColor:"#abc",
       marginVertical:5,
+      borderRadius: 10,
     },
     listItemStyle2: {
       borderWidth: 1, 
@@ -137,5 +143,28 @@ const styles = StyleSheet.create({
       width:'80%',
       flex:5,
     },
+    
+  h3: {
+      paddingTop: 100,
+      color: 'orange',
+      fontSize: 40,
+    },
+    h2: {
+      color: 'orange',
+      fontSize: 18,
+      marginTop: 8,
+    },
+  imageContainer:{
+    
+    height:200,
+    width:'70%',
+    backgroundColor: 'black',
+    overflow:'hidden',
+  
+  },
+  image:{
+    height:'100%',
+    width:'100%'
+  },
   });
   

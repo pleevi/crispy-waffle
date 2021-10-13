@@ -4,8 +4,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
+import * as SQLite from 'expo-sqlite';
 
 
+import {init, addUsers, fetchUsers} from './screens/db';
 import StartingScreen from './screens/StartingScreen';
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';

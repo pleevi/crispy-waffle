@@ -83,6 +83,7 @@ export default function showCriteria() {
               <View style={styles.checkboxContainer}>
                   <CheckBox
                     value={item.isChecked}
+                    tintColors={{ true: 'orange', false: 'black' }}
                     onChange={() => {
                       handleChange(item.id);
                     }}
@@ -102,13 +103,13 @@ export default function showCriteria() {
 };
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginTop:30,
-    },
+  container: {
+    flex: 1,
+    justifyContent: 'space-between',
+    backgroundColor: '#000',
+    alignItems: 'center',
+    width: '100%',
+},
     checkboxContainer: {
       flexDirection: "row",
       marginBottom: 20,
@@ -118,6 +119,7 @@ const styles = StyleSheet.create({
     },
     label: {
       margin: 8,
+      color: "black",
     },
     inputcontainer: {
       flex: 1,
@@ -142,9 +144,15 @@ const styles = StyleSheet.create({
       borderColor:'#f00',
     },
     listItemStyle: { 
-      padding: 1,
-      backgroundColor:"white",
-      marginVertical:1,
+      textAlign: "center",
+      marginBottom: 10,
+      height: 40,
+      width: '90%',
+      margin: 10,
+      backgroundColor: 'white',
+      borderColor: 'gray',
+      borderWidth: StyleSheet.hairlineWidth,
+      borderRadius: 10,
     },
     listItemStyle2: {
       borderColor: 'white', 
