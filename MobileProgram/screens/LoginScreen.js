@@ -7,10 +7,10 @@ import * as yup from 'yup';
 
 const validate = yup.object().shape({
   username: yup.string()
-  //.required()
+  .required()
   .matches("admin", "Username not found"),
   password: yup.string()
-  //.required()
+  .required()
   .matches("admin", "Password incorrect"),
 })
 
