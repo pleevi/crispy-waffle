@@ -54,8 +54,6 @@ export default function showRecipes() {
     useEffect(() => {
         if (isLoading == true) {
             setLoading(false);
-
-
         }
     });
 
