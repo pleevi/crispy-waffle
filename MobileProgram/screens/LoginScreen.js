@@ -1,3 +1,5 @@
+// LoginScreen.js - Juuso Tähtinen
+
 import { StatusBar } from "expo-status-bar";
 import * as React from 'react';
 import { View, Text, Button, StyleSheet, TextInput } from 'react-native';

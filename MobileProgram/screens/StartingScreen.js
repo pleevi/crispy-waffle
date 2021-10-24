@@ -15,7 +15,7 @@ const StartingScreen = ({ navigation }) => {
           style={styles.image}
           fadeDuration={3000}
           speed={3000}
-          rotations={10}
+          rotations={20}
           resizeMode='cover'
           height={200}
           width={200}
