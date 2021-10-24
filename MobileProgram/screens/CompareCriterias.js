@@ -1,3 +1,4 @@
+// CompareCriterias.js - Riku Maijala
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, CheckBox, Text, View, Button, TextInput, Alert, Modal, FlatList } from 'react-native';
 import { init, fetchCheckboxCriteria } from '../db2';

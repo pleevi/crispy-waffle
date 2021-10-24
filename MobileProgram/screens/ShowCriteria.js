@@ -34,7 +34,6 @@ export default function showCriteria() {
   const [newCriteria, setCriteria] = useState('');
   const [shouldRead, setShouldRead] = useState(true);
   const [isSelected, setSelection] = useState(false);
-  //const [isLoading, setLoading] = useState(true);
   const [products, setProducts] = useState(data);
 
 

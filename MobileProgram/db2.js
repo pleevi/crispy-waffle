@@ -45,7 +45,7 @@ export const addCriteria=(checkbox)=>{
     });
     return promise;
 };
-
+// CheckboxCriteria - Riku Maijala
 export const CheckboxCriteria=(checkbox)=>{
     const promise=new Promise((resolve, reject)=>{
         db.transaction((tx)=>{
@@ -84,7 +84,7 @@ export const fetchAllCriteria=()=>{
     });
     return promise;
 };
-
+// fetchCheckBoxCriteria - Riku Maijala
 export const fetchCheckboxCriteria=()=>{
     const promise=new Promise((resolve, reject)=>{
         db.transaction((tx)=>{
