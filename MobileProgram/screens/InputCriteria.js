@@ -1,5 +1,11 @@
+
+//Juho
+import React, {useEffect, useState} from 'react';
+import { init, addCriteria} from '../db2';
+
 import React, { useEffect, useState } from 'react';
 import { init, addCriteria } from '../db2';
+
 import { FlatList, Button, TextInput, StyleSheet, Text, View } from 'react-native';
 import extraData from '../ExtraData';
 

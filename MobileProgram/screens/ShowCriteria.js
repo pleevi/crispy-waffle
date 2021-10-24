@@ -1,4 +1,9 @@
+
+//Juho
+import React, {useEffect, useState} from 'react';
+
 import React, { useEffect, useState } from 'react';
+
 import { StyleSheet, CheckBox, Text, View, Button, TextInput, Alert, Modal, FlatList } from 'react-native';
 import { init, fetchAllCriteria, CheckboxCriteria } from '../db2';
 import * as SQLite from 'expo-sqlite';
@@ -6,6 +11,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Constants from 'expo-constants';
 import extraData from '../ExtraData';
 import { useFocusEffect } from '@react-navigation/native';
+
 
 
 const data = [
@@ -17,6 +23,7 @@ const data = [
   { id: 6, isChecked: false },
   { id: 7, isChecked: false },
 ];
+
 
 init()
   .then(() => {
@@ -36,7 +43,15 @@ export default function showCriteria() {
   const [isSelected, setSelection] = useState(false);
   const [products, setProducts] = useState(data);
 
-
+  // const handleChange = (id) => {
+  //   let temp = products.map((product) => {
+  //     if (id === product.id) {
+  //       return { ...product, isChecked: !product.isChecked };
+  //     }
+  //     return product;
+  //   });
+  //   setProducts(temp);
+  // };
   const handleChange = (id) => {
     let temp = criteriaList.map((product) => {
       if (id === product.id) {
@@ -47,12 +62,30 @@ export default function showCriteria() {
     setCriteriaList(temp);
   };
 
+    
+
+    if (isLoading == true){
+      isLoading=false;
+
+
   useFocusEffect(() => {
     if (extraData.load == true) {
+
       readCriteria();
       extraData.load = false;
 
     }
+
+
+
+  async function readCriteria(){
+      try{
+        const dbResult = await fetchAllCriteria(newCriteria);
+        console.log("dbResult");
+        console.log(dbResult);
+        for(i=0;i<dbResult.rows._array.length;i++){
+         dbResult.rows._array[i].isChecked=false;
+
 
 
   });

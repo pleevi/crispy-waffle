@@ -1,5 +1,17 @@
+
+//Juho
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import InputRecipe from './screens/InputRecipe'
+import PrintRecipe from './screens/PrintRecipe'
+import InputCriteria from './screens/InputCriteria'
+import ShowCriteria from './screens/ShowCriteria'
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { StyleSheet, Text, View } from 'react-native';
+
 import * as React from 'react';
 import { StyleSheet, Text, View, Button,StatusBar, SafeAreaView} from 'react-native';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -26,8 +38,13 @@ const HomeScreenDrawer = () => {
     <Drawer.Navigator>
       <Drawer.Screen name="Home Screen" component={HomeScreen} />
       <Drawer.Screen name="Input Criteria" component={InputCriteria} />
+
+      <Drawer.Screen name="Input Recipe" component={InputRecipe} />
+      <Drawer.Screen name="PrintRecipe" component={PrintRecipe} />
+
       <Drawer.Screen name="Show Criteria" component={ShowCriteria} />
       <Drawer.Screen name="Show recipes" component={showRecipes} />
+
     </Drawer.Navigator>
 
   );
