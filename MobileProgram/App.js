@@ -1,5 +1,8 @@
+//Juho
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+import InputRecipe from './screens/InputRecipe'
+import PrintRecipe from './screens/PrintRecipe'
 import InputCriteria from './screens/InputCriteria'
 import ShowCriteria from './screens/ShowCriteria'
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -14,6 +17,8 @@ export default function App() {
     <Drawer.Navigator>
       <Drawer.Screen name="Show Criteria" component={ShowCriteria} />
       <Drawer.Screen name="Input Criteria" component={InputCriteria} />
+      <Drawer.Screen name="Input Recipe" component={InputRecipe} />
+      <Drawer.Screen name="PrintRecipe" component={PrintRecipe} />
     </Drawer.Navigator>
     </NavigationContainer>
   );

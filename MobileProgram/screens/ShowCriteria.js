@@ -1,9 +1,11 @@
+//Juho
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, CheckBox, Text, View, Button, TextInput, Alert, Modal, FlatList } from 'react-native';
 import { init, fetchAllCriteria } from '../db2';
 import * as SQLite from 'expo-sqlite';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Constants from 'expo-constants';
+
 
 
 const data = [
@@ -15,6 +17,7 @@ const data = [
   { id: 6, isChecked: false },
   { id: 7, isChecked: false },
 ];
+
 
 init()
 .then(()=>{
@@ -35,7 +38,15 @@ export default function showCriteria() {
   //const [isLoading, setLoading] = useState(true);
   const [products, setProducts] = useState(data);
 
-
+  // const handleChange = (id) => {
+  //   let temp = products.map((product) => {
+  //     if (id === product.id) {
+  //       return { ...product, isChecked: !product.isChecked };
+  //     }
+  //     return product;
+  //   });
+  //   setProducts(temp);
+  // };
   const handleChange = (id) => {
     let temp = criteriaList.map((product) => {
       if (id === product.id) {
@@ -46,10 +57,12 @@ export default function showCriteria() {
     setCriteriaList(temp);
   };
     
+
     if (isLoading == true){
       isLoading=false;
       readCriteria();
     }
+
 
   async function readCriteria(){
       try{
