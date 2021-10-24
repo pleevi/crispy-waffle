@@ -1,3 +1,5 @@
+// By Leevi Palo
+
 import React from 'react';
 
 import { View, Text, StyleSheet, Button } from 'react-native';
@@ -10,7 +12,7 @@ const FlatListItem = (props) => {
             <Text>Difficulty: {props.difficulty} {"\n"}</Text>
             <Text>Cooking time: {props.cooking_time} {"\n"}</Text>
             <Text>Instructions: {"\n"}{"\n"}{props.instructions} </Text>
-            <Button title="Show Ingredients" onPress={() => props.onShowIngredients()} color="orange"/>
+            <Button title="Show Ingredients" onPress={() => props.onShowIngredients()} color="orange" />
         </View>
     );
 
@@ -40,7 +42,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 20,
         justifyContent: 'space-between',
-      },
+    },
 });
 
 export default FlatListItem;

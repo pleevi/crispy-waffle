@@ -1,4 +1,5 @@
 import React from 'react';
+//By Leevi Palo
 
 import { View, Text, StyleSheet } from 'react-native';
 
@@ -7,14 +8,14 @@ const IngredientListItem = (props) => {
     return (
 
         <View style={styles.container}>
-            
-            
-                <View style={styles.flatListItemStyle}>
-                    <Text>{props.ingredient}: {props.amount} {props.unit} </Text>
-                </View>
-            
+
+
+            <View style={styles.flatListItemStyle}>
+                <Text>{props.ingredient}: {props.amount} {props.unit} </Text>
+            </View>
+
         </View>
-        
+
     );
 
 }
@@ -49,13 +50,13 @@ const styles = StyleSheet.create({
         backgroundColor: 'black',
         borderRadius: 20,
         justifyContent: 'space-between',
-      },
-      h1: {
+    },
+    h1: {
         paddingTop: 50,
-        paddingBottom:2,
+        paddingBottom: 2,
         color: 'orange',
         fontSize: 40,
-      },
+    },
 });
 
 export default IngredientListItem;
