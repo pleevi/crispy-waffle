@@ -1,3 +1,4 @@
+// HomeScreen.js - Juuso Tähtinen
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import SpinningImage from 'react-native-spinning-image';

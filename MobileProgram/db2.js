@@ -45,12 +45,50 @@ export const addCriteria=(checkbox)=>{
     });
     return promise;
 };
+// CheckboxCriteria - Riku Maijala
+export const CheckboxCriteria=(checkbox)=>{
+    const promise=new Promise((resolve, reject)=>{
+        db.transaction((tx)=>{
+            //Here we use the Prepared statement, just putting placeholders to the values to be inserted
+            tx.executeSql('insert into testi8(checkbox, isChecked) values(?,?);',
+            //And the values come here
+            [checkbox, false],
+            //If the transaction succeeds, this is called
+            (_, result)=>{
+                resolve(result);
+            },
+            //If the transaction fails, this is called
+            (_,err)=>{
+                reject(err);
+            }
+            );
+        });
+    });
+    return promise;
+};
 
 export const fetchAllCriteria=()=>{
     const promise=new Promise((resolve, reject)=>{
         db.transaction((tx)=>{
             //Here we select all from the table fish
             tx.executeSql('select * from testi4;',  
+            [],
+            (tx, result)=>{
+                resolve(result);
+            },
+            (tx,err)=>{
+                reject(err);
+            }
+            );
+        });
+    });
+    return promise;
+};
+// fetchCheckBoxCriteria - Riku Maijala
+export const fetchCheckboxCriteria=()=>{
+    const promise=new Promise((resolve, reject)=>{
+        db.transaction((tx)=>{
+            tx.executeSql('select * from testi8;',  
             [],
             (tx, result)=>{
                 resolve(result);

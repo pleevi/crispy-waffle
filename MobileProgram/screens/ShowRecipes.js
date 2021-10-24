@@ -19,7 +19,9 @@ export default function showRecipes() {
     const [shouldShow, setShouldShow] = useState(true);
     const [isShowingBtn, setShowingBtn] = React.useState(true);
 
+
     // First we have two fetches from the service as we need one for the recipe and one for ingredients and amounts
+
     async function fetchRecipe() {
         await fetch("http://10.0.2.2:8080/rest/mealsservice/getAll")//Function returns a value, which is a parameter 
             .then(parameter => parameter.json())//to the next part (parameter). And parameter.json() returns a value, which is a parameter 
