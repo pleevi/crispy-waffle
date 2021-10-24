@@ -21,6 +21,7 @@ import showRecipes from './screens/ShowRecipes';
 const Drawer = createDrawerNavigator();
  
 const HomeScreenDrawer = () => {
+  // HomeScreenDrawer - Juuso Tähtinen
   return (
     <Drawer.Navigator>
       <Drawer.Screen name="Home Screen" component={HomeScreen} />
@@ -48,6 +49,7 @@ const App = () => {
   };
 
   return (
+    // RootStack - Juuso Tähtinen
     <NavigationContainer>
       <RootStack.Navigator>
         {isAuthenticated ? (
