@@ -26,7 +26,6 @@ init()
 });
 
 
-
 export default function CompareCriterias({ props, navigate, route }) {
 
   const [isInserted, setIsInserted] = useState(false);
