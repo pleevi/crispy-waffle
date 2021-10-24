@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, CheckBox, Text, View, Button, TextInput, Alert, Modal, FlatList } from 'react-native';
-import { init, fetchAllCriteria } from '../db2';
+import { init, fetchAllCriteria, CheckboxCriteria } from '../db2';
 import * as SQLite from 'expo-sqlite';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Constants from 'expo-constants';
@@ -34,7 +34,6 @@ export default function showCriteria() {
   const [newCriteria, setCriteria] = useState('');
   const [shouldRead, setShouldRead] = useState(true);
   const [isSelected, setSelection] = useState(false);
-  //const [isLoading, setLoading] = useState(true);
   const [products, setProducts] = useState(data);
 
 
@@ -57,6 +56,31 @@ export default function showCriteria() {
 
 
   });
+  const addCheckboxHandler=()=>{
+    setCriteriaList(criteriaList=>[...criteriaList, {criteria:newCriteria}]);
+    saveCriteria();
+    
+    
+  }
+
+  async function saveCheckedCriteria() {
+    try{
+      const dbResult = await CheckboxCriteria(newCriteria);
+      console.log(dbResult);
+      for (i = 0; i < dbResult.rows._array.length; i++) {
+        dbResult.rows._array[i].isChecked = true;
+
+      }
+  
+    }
+    catch(err){
+      console.log(err);
+    }
+    finally{
+      setIsInserted(true);
+    }
+}
+  
 
   async function readCriteria() {
     try {
@@ -100,12 +124,17 @@ export default function showCriteria() {
                 <Text style={styles.label}>{item.id}. {item.checkbox}</Text>
               </View>
             </View>
+            
 
           )}
         />
       </View>
-
+      <View>
+        <Text>Save Criterias</Text>
+        <Button title="Press" onPress={saveCheckedCriteria}/>
+      </View>
     </View>
+    
   );
 
 };
