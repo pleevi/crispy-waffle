@@ -1,3 +1,5 @@
+// StartingScreen.js - Juuso Tähtinen
+
 import React from 'react';
 import { View, Text, Button, StyleSheet, Image, Pressable } from 'react-native';
 import SpinningImage from 'react-native-spinning-image';
